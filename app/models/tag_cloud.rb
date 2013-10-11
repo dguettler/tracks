@@ -3,7 +3,7 @@
 class TagCloud
 
   attr_reader :user, :cut_off
-  attr_reader :min, :divisor
+  attr_reader :divisor
 
   def initialize(user, cut_off = nil)
     @user = user
@@ -21,14 +21,16 @@ class TagCloud
     @tags
   end
 
-  def compute
-    max, @min = 0, 0
-    tags.each { |t|
-      max = [t.count.to_i, max].max
-      @min = [t.count.to_i, @min].min
-    }
+  def min
+    0
+  end
 
-    @divisor = ((max - @min) / levels) + 1
+  def tag_counts
+    @_tag_counts ||= tags.map { |t| t.count.to_i }
+  end
+
+  def divisor
+    @_divisor ||= ((max - min) / levels) + 1
   end
 
   private
@@ -51,5 +53,9 @@ class TagCloud
 
     def levels
       10
+    end
+
+    def max
+      @_max ||= tag_counts.max
     end
 end
