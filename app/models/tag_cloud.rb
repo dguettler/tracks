@@ -3,7 +3,6 @@
 class TagCloud
 
   attr_reader :user, :cut_off
-  attr_reader :divisor
 
   def initialize(user, cut_off = nil)
     @user = user
