@@ -33,6 +33,10 @@ class TagCloud
     @_divisor ||= ((max - min) / levels) + 1
   end
 
+  def relative_size(tag)
+    (tag.count.to_i - min) / divisor
+  end
+
   private
     # TODO: parameterize limit
     def sql(cut_off = nil)
