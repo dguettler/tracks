@@ -4,6 +4,7 @@
 require 'capybara/rails'
 require 'capybara/cucumber'
 require 'capybara/session'
+require 'selenium/webdriver'
 # BUG in this version of cucumber/capybara: require 'cucumber/rails/capybara_javascript_emulation' # Lets you click links with onclick javascript handlers without using @culerity or @javascript
 
 Capybara.default_wait_time = 5
