@@ -3,7 +3,7 @@
 class TagCloud
 
   attr_reader :user, :cut_off
-  attr_reader :tags, :tags_min, :tags_divisor
+  attr_reader :tags, :min, :divisor
 
   def initialize(user, cut_off = nil)
     @user = user
@@ -20,13 +20,13 @@ class TagCloud
     end
     @tags = Tag.find_by_sql(params).sort_by { |tag| tag.name.downcase }
 
-    max, @tags_min = 0, 0
+    max, @min = 0, 0
     @tags.each { |t|
       max = [t.count.to_i, max].max
-      @tags_min = [t.count.to_i, @tags_min].min
+      @min = [t.count.to_i, @min].min
     }
 
-    @tags_divisor = ((max - @tags_min) / levels) + 1
+    @divisor = ((max - @min) / levels) + 1
   end
 
   private
