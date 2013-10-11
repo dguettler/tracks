@@ -1,6 +1,9 @@
+require 'factory_girl'
+
 Rake::TestTask.new([:test, :stats]) do |t|
   t.test_files = FileList[
-    'test/functional/stats_controller_test.rb'
+    'test/functional/stats_controller_test.rb',
+    'test/unit/tag_cloud_test.rb'
   ]
 end
 
