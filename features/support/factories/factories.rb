@@ -1,3 +1,4 @@
+require 'factory_girl'
 FactoryGirl.define do
   factory :user do
     sequence(:login) { |n| "testuser#{n}" }
